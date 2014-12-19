@@ -11,7 +11,7 @@ public abstract class LogFormatImpl implements LogFormat {
 	public LinkedHashMap<String, String> log() {
 		LinkedHashMap<String, String> log = new LinkedHashMap<>();
 		for(LogField field :  getFields())
-			log.put(field.getName(), field.getValue());
+			log.put(field.getName(), field.getValue(log));
 
 		return log;
 	}

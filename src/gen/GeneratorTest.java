@@ -8,10 +8,15 @@ public class GeneratorTest {
 		LogGenerator gen = new DelimLogGenerator(new SmsLogFormat(), "|", false,  "=", true);
 		System.out.println("test");
 		System.out.println(gen.getLogLine());
+		System.out.println(gen.getLogLine());
+		System.out.println(gen.getLogLine());
+		System.out.println(gen.getLogLine());
+		System.out.println(gen.getLogLine());
+		System.out.println(gen.getLogLine());
 		
-		LogGenerator gen2 = new DelimLogGenerator(new SmsLogFormat(), "|", false,  "=", false);
-		System.out.println("test");
-		System.out.println(gen2.getLogLine());
+		//LogGenerator gen2 = new DelimLogGenerator(new SmsLogFormat(), "|", false,  "=", false);
+		//System.out.println("test");
+		//System.out.println(gen2.getLogLine());
 	}
 
 }

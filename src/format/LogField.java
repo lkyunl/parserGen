@@ -1,5 +1,7 @@
 package format;
 
+import java.util.Map;
+
 import domain.Domain;
 
 
@@ -17,7 +19,7 @@ public class LogField {
 		return name;
 	}
 	
-	public String getValue(){
-		return domain.makeValue();
+	public String getValue(Map<String, String> map){
+		return domain.makeValue(map);
 	}
 }

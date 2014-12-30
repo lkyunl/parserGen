@@ -25,7 +25,7 @@ public class RandomWeightDomain implements Domain{
 	}
 
 	@Override
-	public String makeValue() {
+	public String makeValue(Map<String, String> map) {
 		int rand = random.nextInt(totalWeight) + 1;
 		int subSum = 0;
 		for(Entry<String, Integer> entry : params.entrySet()){

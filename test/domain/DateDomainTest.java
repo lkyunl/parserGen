@@ -11,7 +11,7 @@ public class DateDomainTest {
 		
 		DateDomain domain = new DateDomain(new SimpleDateFormat("yyyyMMddHHmmssSSS"));
 		
-		System.out.println(domain.makeValue());
+		System.out.println(domain.makeValue(null));
 		
 	}
 

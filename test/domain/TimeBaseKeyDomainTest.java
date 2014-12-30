@@ -12,7 +12,7 @@ public class TimeBaseKeyDomainTest {
 		TimeBaseKeyDomain domain = new TimeBaseKeyDomain(new SimpleDateFormat("yyyyMMddHHmmssSSS"), 8);
 		
 		//for(int i=100; i  < 10000; i++)
-		System.out.println(domain.makeValue());
+		System.out.println(domain.makeValue(null));
 		//System.out.println(domain.makeValue());
 	///	System.out.println(domain.makeValue());
 	}

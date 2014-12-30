@@ -24,18 +24,18 @@ public  abstract class LogGeneratorImpl implements LogGenerator{
 		
 		return concatLog(chunks);
 	}
-
-	@Override
-	public List<String> getLogLines(int count) {
-		List<LinkedHashMap<String, String>> chunksList = format.logs(count);
-		if(chunksList == null)
-			return null;
-		
-		List<String> logLines = new ArrayList<>();
-		for(LinkedHashMap<String, String> chunks : chunksList)
-			logLines.add(concatLog(chunks));
-		
-		return logLines;
-	}
+//
+//	@Override
+//	public List<String> getLogLines(int count) {
+//		List<LinkedHashMap<String, String>> chunksList = format.logs(count);
+//		if(chunksList == null)
+//			return null;
+//		
+//		List<String> logLines = new ArrayList<>();
+//		for(LinkedHashMap<String, String> chunks : chunksList)
+//			logLines.add(concatLog(chunks));
+//		
+//		return logLines;
+//	}
 
 }

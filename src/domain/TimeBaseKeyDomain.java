@@ -2,6 +2,7 @@ package domain;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 //시간 기반으로 유일한 값을 반환
 public class TimeBaseKeyDomain implements Domain {
@@ -9,17 +10,24 @@ public class TimeBaseKeyDomain implements Domain {
 	private int size;
 	private  int lastKey; 
 	private  String lastDate;
+	private Date baseDate;
 
 	
-	public TimeBaseKeyDomain(SimpleDateFormat dateformat, int size){
+	public TimeBaseKeyDomain(SimpleDateFormat dateformat, int size, Date baseDate){
 		this.dateformat = dateformat;
 		this.size = size;
+		this.baseDate = baseDate;
 		lastKey = 1;
 	}
 	
+	@Deprecated
+	public TimeBaseKeyDomain(SimpleDateFormat dateformat, int size){
+		this(dateformat, size, new Date());
+	}
+
 	@Override
-	public String makeValue() {
-		String nowDate =  dateformat.format(new Date());
+	public String makeValue(Map<String, String> map) {
+		String nowDate =  dateformat.format(baseDate);
 		
 		if(nowDate.equals(lastDate)){
 			lastKey++;

@@ -1,7 +1,5 @@
 package domain;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +23,7 @@ public class RandomWeightDomainTest {
 		int e = 0;
 		
 		for(int i=0; i< 1000000; i++){
-			String r = domain.makeValue();
+			String r = domain.makeValue(null);
 
 			if(r == null)
 				n++;

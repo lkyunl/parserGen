@@ -1,4 +1,6 @@
-package gen;
+package file;
+
+import generator.LogGenerator;
 
 import java.io.File;
 

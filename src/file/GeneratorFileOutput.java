@@ -1,4 +1,6 @@
-package gen;
+package file;
+
+import generator.LogGenerator;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,9 +18,12 @@ public class GeneratorFileOutput {
 	}
 
 	public void write(int size){
-
+		
+		File f = new File(filename);
+		if(!f.getParentFile().isDirectory())
+			f.getParentFile().mkdirs();
+		
 		try(BufferedWriter out = new BufferedWriter(new FileWriter(filename, true));){
-	
 			for(int i = 0; i < size; i++){
 				out.write(gen.getLogLine());
 				out.newLine();
@@ -29,10 +34,26 @@ public class GeneratorFileOutput {
 			e.printStackTrace();
 		}
 	}
+		
+		public void write(int size, String filename2){
+			
+			File f = new File(filename2);
+			if(!f.getParentFile().isDirectory())
+				f.getParentFile().mkdirs();
+			
+			try(BufferedWriter out = new BufferedWriter(new FileWriter(filename2, true));){
 
+				
+				for(int i = 0; i < size; i++){
+					out.write(gen.getLogLine());
+					out.newLine();
+				}
 
-
-	//LogGenerator gen = new DelimLogGenerator(new SmsLogFormat(), "|", false,  "=", true);
-
+			} catch (IOException e) {
+				// TODO 자동 생성된 catch 블록
+				e.printStackTrace();
+			}
+			
+	}
 
 }

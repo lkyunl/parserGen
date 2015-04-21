@@ -1,4 +1,4 @@
-package gen;
+package generator;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

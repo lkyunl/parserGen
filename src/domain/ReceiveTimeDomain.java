@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Random;
 
-// sendtime과 receivetime은 1초이내, 1%안에 3~4초
+//T분포
 public class ReceiveTimeDomain implements Domain {
 	private Date baseDate;
 	
@@ -23,25 +23,12 @@ public class ReceiveTimeDomain implements Domain {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		Random rand = new Random();
 	
-		int delay = 0;
-		if(rand.nextInt(100) == 99)
-			delay = 3;
-		
-	
-		long time = rand.nextInt(1000) + delay * 1000;
-		
-		String date = sdf.format(new Date(baseDate.getTime() - time));
-		
-		//long rec_time = Long.parseLong(date);
-		
-		//time = rec_time - time;
+		double a = rand.nextGaussian();
+		double b = rand.nextGaussian();
+		double c = rand.nextGaussian();
 
+		String date = sdf.format(new Date(baseDate.getTime() - Math.round((a*a + b*b + c*c)*2000)));
 	
-		return date;//String.valueOf(time);
-		
+		return date;
 	}
-	
-
-	
-
 }

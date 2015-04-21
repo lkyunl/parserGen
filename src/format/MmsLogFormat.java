@@ -82,32 +82,32 @@ public class MmsLogFormat extends LogFormatImpl{
 		
 	
 		Map<String, Integer> txtcnt = new HashMap<String, Integer> ();
-		txtcnt.put("0", 10);
-		txtcnt.put("1", 55);
-		txtcnt.put("2", 20);
-		txtcnt.put("3", 10);
-		txtcnt.put("4", 5);
+		txtcnt.put("0", 1);
+		txtcnt.put("1", 999);
+		//txtcnt.put("2", 5);
+		//txtcnt.put("3", 2);
+		//txtcnt.put("4", 1);
 		fields.add(new LogField("TXTcnt",  new RandomWeightDomain(txtcnt)));	
 		
 		Map<String, Integer> imgcnt = new HashMap<String, Integer> ();
-		imgcnt.put("0", 50);
+		imgcnt.put("0", 40);
 		imgcnt.put("1", 20);
-		imgcnt.put("2", 15);
-		imgcnt.put("3", 10);
-		imgcnt.put("4", 5);
+		imgcnt.put("2", 10);
+		imgcnt.put("3", 5);
+		imgcnt.put("4", 1);
 		fields.add(new LogField("IMGcnt",  new RandomWeightDomain(imgcnt)));	
 		
 		Map<String, Integer> audiocnt = new HashMap<String, Integer> ();
 		audiocnt.put("0", 98);
 		audiocnt.put("1", 1);
 		audiocnt.put("2", 1);
-		fields.add(new LogField("AUDIOcnt",  new RandomWeightDomain(txtcnt)));	
+		fields.add(new LogField("AUDIOcnt",  new RandomWeightDomain(audiocnt)));	
 		
 		Map<String, Integer> videocnt = new HashMap<String, Integer> ();
 		videocnt.put("0", 90);
 		videocnt.put("1", 8);
 		videocnt.put("2", 2);
-		fields.add(new LogField("VIDEOcnt",  new RandomWeightDomain(txtcnt)));	
+		fields.add(new LogField("VIDEOcnt",  new RandomWeightDomain(videocnt)));	
 		
 		fields.add(new LogField("TOT_MSG_SIZE",  new ConstantDomain("1660")));	
 		fields.add(new LogField("BILL_ACNT_NO",  new ConstantDomain("")));	

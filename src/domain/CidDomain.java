@@ -1,27 +1,41 @@
 package domain;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 
 public class CidDomain implements Domain {
+	private static Random random = new Random();
 
-	private static String[] KT = { "01015551001", "01015551002", "01015551003", "01015551004", "01015551005", 
-		"01015552001", "01015552002", "01015552003", "01015552004", "01015552005"};
-	private static String[] DOW = {"01115553001", "01115553002", "01115553003", "01115553004", "01115553005",
-		"01115554001", "01115554002", "01115554003", "01115554004", "01115554005" };
-	private static String[] Standard= {"01015445001", "01015445002", "01015445003", "01015445004", "01015445005",
-		"01015446001","01015446002","01015446003","01015446004","01015446005"};
-	private static String[] SKNet = {"01615417001", "01615417002", "01615417003", "01615417004", "01615417005",
-		"01615418001", "01615418002" , "01615418003" , "01615418004" , "01615418005"};
-	private static String[] SKBroad = {"01715889001", "01715889002","01715889003", "01715889004", "01715889005", 
-		"01715889006", "01715889007", "01715889008", "01715889009", "01715889000"};
-	private static String[] InfoBank = {"01813330000", "01813330001", "01813330002" ,"01813330003" , "01813330004",
-		"01813330005", "01813330006", "01813330007", "01813330008", "01813330009"};
-	private static String[] SKTel = {"01916413000", "01916413001", "01916413002", "01916413003", "01916413004",
-		"01916413005", "01916413006", "01916413007", "01916413008", "01916413009"};
+	private static String[] KT = { "0190003200", "0190003201", "0190003209", "0190003210", "0190003211", 
+		"0190003212", "0190003152", "0190003153", "0190003154", "0190003155",
+		"0190003156", "0190003157", "0190003158", "0190003159", "0190003160",
+		"0190003161", "0190003102"};
+	private static String[] DOW = {"0190003162", "0190003163", "0190003164", "0190003165", "0190003166", 
+		"0190003167", "0190003168", "0190003169", "0190003170", "0190003171",
+		"0190003172", "0190003173", "0190003174", "0190003224", "0190003225" };
+	private static String[] Standard= {"0190005122", "0190005123", "0190005124", "0190005125", "0190005126",
+		"0190005127", "0190005128", "0190005129", "0190005130", "0190005131", 
+		"0190005132" };
+	private static String[] SKNet = {"0190003137", "0190003138", "0190003139", "0190003140", "0190003141",
+		"0190003142", "0190003143", "0190003202", "0190003203", "0190003204", "0190003205"};
+	private static String[] SKBroad = {"0190003175", "0190003176", "0190003177", "0190003178", "0190003179", 
+		"0190003180", "0190003181", "0190003182", "0190003183", "0190003184"};
+	private static String[] InfoBank = {"0190001006", "0190001195", "0190001339", "0190001706", "0190001707", 
+		"0190001716", "0190001832", "0190001833", "0190001735", "0190001793", 
+		"0190001794", "0190001860"};
+	private static String[] SKTel = {"0190001388", "0190001681", "0190001682", "0190001687", "0190001688", 
+		"0190001811", "0190001812", "0190001827", "0190001828", "0190001829", "0190001830"};
 
-	private Random random = new Random();
+	private static List<Integer>  weights = new LinkedList<Integer> ();
+	
+	static {
+		for(int i = 0; i < 50; i++){
+		weights.add(random.nextInt(100));
+		}
+	}
 	
 	public CidDomain(){
 		//TODO 업체별로 선택가능하게
@@ -29,27 +43,38 @@ public class CidDomain implements Domain {
 
 	@Override
 	public String makeValue(Map<String, String> map) {
-		int company = random.nextInt(7);
-		int phone = random.nextInt(10);
-		
-		switch(company){
-		case 0:
-			return KT[phone];
-		case 1:
-			return DOW[phone];
-		case 2:
-			return Standard[phone];
-		case 3:
-			return SKNet[phone];
-		case 4:
-			return SKBroad[phone];
-		case 5:
-			return InfoBank[phone];
-		case 6:
-			return SKTel[phone];
-		default:
-			return "";
-		}
+		int company = random.nextInt(100);
+
+		if(company < 30)
+			return pick(KT);
+		else if(company < 50)
+			return pick(DOW);
+		else if(company < 65)
+			return pick(Standard);
+		else if(company < 80)
+			return pick(SKNet);
+		else if(company < 88)
+			return pick(SKBroad);
+		else if(company < 95)
+			return pick(InfoBank);
+		else 
+			return pick(SKTel);
 	}
 
+	private String pick(String[] company){
+		if(company == null || company.length == 0)
+			return "";
+
+		int sumWeight = 0;
+		for(int i = 0; i < company.length; i ++){
+			sumWeight += weights.get(i);
+		}
+
+		int rand = random.nextInt(sumWeight);
+		for(int i = 0; i < company.length; i ++){
+			if((rand -=  weights.get(i))  <= 0)
+				return company[i];
+		}
+		return "";
+	}
 }

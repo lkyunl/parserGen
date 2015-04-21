@@ -20,7 +20,7 @@ public class SmsLogFormat extends LogFormatImpl{
 	private List<LogField> fields;
 	private Date baseDate;
 
-	@Deprecated
+
 	public SmsLogFormat(){
 		this(new Date());
 	}

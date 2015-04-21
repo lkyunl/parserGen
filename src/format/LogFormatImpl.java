@@ -18,17 +18,7 @@ public abstract class LogFormatImpl implements LogFormat {
 
 	@Override
 	public List<LinkedHashMap<String, String>> logs(int count) {
-		return null;
-//		List<LinkedHashMap<String, String>> logs = new ArrayList<>();
-//		//getValue("name", 1000);
-//		//getValue("name", 1000);
-//		
-////		for(int i=0; i <count; i++){
-////			LinkedHashMap<String, String> log = new LinkedHashMap<>();
-////			for(String name :  fieldNames)
-////				log.put(name, getValue(name));
-////		}
-//		return logs;
+		throw new UnsupportedOperationException();
 	}
-		
+
 }

@@ -1,0 +1,42 @@
+로그제너레이터 매뉴얼
+
+1. 코드 설명
+ domain 패키지 
+   미리 정의된 규칙에 따라 필드값을 생성한다. makeValue() 메소드를 이용하여 필드값을 구한다.  
+   
+ format 패키지  
+ 로그의 포맷 즉 필드명과 그 필드의 도메인이 정의된다.
+ 
+ generator 패키지
+ format에 따라 실제 로그를 생성한다. 로그의 규격은 여기서 정의된다. 
+  DelimLogGenerator 클래스 : 필드명과 필드값이 특정 구분자로 구분되는 로그를 생성할때 사용
+  
+ file 패키지
+ file 관련 API 구현되어 있다.
+  GenratorFileOutput 클래스 : 생성된 로그를 특정 파일에 write할때 사용하는 API
+  
+ main 패키지
+  실제 로그를 생성하는 부분이다. generator가 한 줄 단위로 생성한다면 main 패키지는 특정 기간동안 로그를 생성해 파일에 저장하는 전체적인 작업을 한다. 
+  
+ 
+2. 로그 생성
+ 로그는 main패키지의 각종 클래스를 수정하거나 새로 작성하여 생성 가능하다.
+ _DailyGenerator 클래스 : 하루치 SMS로그를 생성한다.
+ _Generator 클래스 : 실시간으로 SMS로그를 생성한다.
+ _GeneratorMMS 클래스 : 실시간으로 MMS로그를 생성한다.
+ _Generator 클래스 : 실시간으로 SMS로그들을 생성한다. 한번에 여러 폴더에 로그를 생성한다.
+ _GeneratorMMS 클래스 : 실시간으로 MMS로그들을 생성한다. 한번에 여러 폴더에 로그를 생성한다.
+ _MonthSMS 클래스 : 한달치 SMS로그를 일자 단위로 생성한다.
+ _MonthMMS 클래스 : 한달치 MMS로그를 일자 단위로 생성한다.
+ _ThreadSMS 클래스 : 여러일의 SMS로그를 쓰레드를 이용해 생성한다. 
+ _ThreadMMS 클래스 : 여러일의 MMS로그를 쓰레드를 이용해 생성한다. 
+
+ 
+ * _Generator 클래스와 _DailyGenerator클래스에 주석을 추가했으니 참고하여 사용하시길 바랍니다.
+ 
+ 
+  3. 수정 가이드
+  시간대별 생성되는 로그를 수정하고 싶을때 :  getMin 과 getMax 클래스의 hourBalances 값을 시간대별로 수정 
+  필드 값을 수정 : SmsLogFormat(MmsLogFormat)에서 해당 필드의 domain을 확인 후 해당 domain 클래스를 수정
+ 
+  

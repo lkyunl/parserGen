@@ -1,4 +1,9 @@
-package gen;
+package main;
+
+import file.GeneratorFileOutput;
+import format.MmsLogFormat;
+import generator.DelimLogGenerator;
+import generator.LogGenerator;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -6,12 +11,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
-import format.MmsLogFormat;
+public class _MonthMMS {
 
-public class T11 {
-
-
-		public static Date addDays(Date date, int days)
+	public static Date addDays(Date date, int days)
 		{
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(date);
@@ -19,10 +21,9 @@ public class T11 {
 			return cal.getTime();
 		}
 
-
 		public static void main(String[] args) throws ParseException {
 
-			int year = 2014;
+			int year = 2015;
 //			int month = 12;
 //			int date = 23;
 			int hour = 0;
@@ -35,7 +36,7 @@ public class T11 {
 
 			System.out.println("start");
 			
-			String sourceDate = "2014-10-31";
+			String sourceDate = "2014-12-31";
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			SimpleDateFormat format2 = new SimpleDateFormat("MMdd");
 			Date myDate = format.parse(sourceDate);
@@ -57,13 +58,13 @@ public class T11 {
 						for(second = 0; second < 60; second++){
 
 							LogGenerator gen = new DelimLogGenerator(new MmsLogFormat(getDate(year, month, date, hour, minute, second)), "|", false,  "=", true);
-							final GeneratorFileOutput helper = new GeneratorFileOutput(gen, "d:\\MMS" + 2014 + today +".log");
+							final GeneratorFileOutput helper = new GeneratorFileOutput(gen, "d:\\MMS" + 2015 + today +".log");
 							helper.write(rand.nextInt( getMax(hour, minute) - getMin(hour,minute)) + getMin(hour,minute));
 
 //							System.out.println();
 //							sum +=  rand.nextInt( getMax(hour, minute) - getMin(hour,minute)) + getMin(hour,minute);
 						}
-				if(today.equals("1130"))
+				if(today.equals("0131"))
 					break;
 			}
 			System.out.println("end");
@@ -77,45 +78,29 @@ public class T11 {
 		}
 
 		public static int getMax(int hour, int minute){
-			int[] hourValances = {
+			int[] hourBalances = {
 					6, 5, 5, 7, 9, 10,
 					14, 16, 17, 17, 18, 19,
 					20, 20, 24, 27, 30, 34,
 					32, 25, 21, 18, 15, 6,
 			};
-			int min = hour * 60 + minute;
-			int speed = 1000;/*분당 생성 로그 수*/
-
-			int sum = 0;
-			for(int val : hourValances){
-				sum+=val;
-			}
-
-			int test = hourValances[hour] ;
-
+		
+			int test = hourBalances[hour] ;
 			return test;
 		}
 
 
 		public static int getMin(int hour, int minute){
 
-			int[] hourValances = {
+			int[] hourBalances = {
 					1, 0, 0, 1, 1, 1,
 					5, 5, 5, 5, 10, 10,
 					10, 15, 15, 15, 20, 25,
 					10, 10, 5, 5, 2, 2,
 
 			};
-
-			int min = hour * 60 + minute;
-
-			int sum = 0;
-			for(int val : hourValances){
-				sum+=val;
-			}
-
-			int test = hourValances[hour];
-
+		
+			int test = hourBalances[hour];
 			return test;
 		}
 		
